@@ -4,17 +4,17 @@ namespace ChessLogic;
 
 public class Board
 {
-    private readonly IPiece[,] _pieces = new IPiece[8, 8];
+    private readonly Piece[,] _pieces = new Piece[8, 8];
 
     // setup indexer to access board like a 2d matrix
-    public IPiece this[int row, int col]
+    public Piece this[int row, int col]
     {
         get => _pieces[row, col];
         set => _pieces[row, col] = value;
     }
 
     // indexer to use position object as an index to the matrix
-    public IPiece this[Position position]
+    public Piece this[Position position]
     {
         get => this[position.Row, position.Column];
         set => _pieces[position.Row, position.Column] = value;
@@ -58,12 +58,12 @@ public class Board
         }
     }
 
-    public bool IsPositionInside(Position position)
+    public bool IsInside(Position position)
     {
         return position.Row >= 0 && position.Row < 8 && position.Column >= 0 && position.Column < 8;
     }
 
-    public bool IsPositionEmpty(Position position)
+    public bool IsEmpty(Position position)
     {
         return this[position] == null;
     }
