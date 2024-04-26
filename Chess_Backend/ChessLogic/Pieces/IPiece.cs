@@ -2,5 +2,7 @@
 
 public interface IPiece
 {
+    public Player Color { get; }
+    
     
 }
