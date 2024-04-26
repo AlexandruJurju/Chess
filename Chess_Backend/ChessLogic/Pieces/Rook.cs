@@ -12,6 +12,11 @@ public class Rook : Piece
         Directions.West,
     };
 
+    public Rook(Player color)
+    {
+        Color = color;
+    }
+
     public override List<Move> GetValidMoves(Position startPosition, Board board)
     {
         List<Position> validEndPositions = FindValidPositions(startPosition, board, _directions);
@@ -19,9 +24,9 @@ public class Rook : Piece
                 endPosition => new Move(startPosition, endPosition))
             .ToList();
     }
-
-    public Rook(Player color)
+    
+    public override string ToString()
     {
-        Color = color;
+        return Color == Player.White ? "R" : "r";
     }
 }

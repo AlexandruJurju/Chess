@@ -29,4 +29,6 @@ public abstract class Piece
 
         return validPositions;
     }
+
+    public abstract override string ToString();
 }

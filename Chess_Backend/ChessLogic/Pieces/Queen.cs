@@ -28,4 +28,9 @@ public class Queen : Piece
                 endPosition => new Move(startPosition, endPosition))
             .ToList();
     }
+
+    public override string ToString()
+    {
+        return Color == Player.White ? "Q" : "q";
+    }
 }

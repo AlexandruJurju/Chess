@@ -43,4 +43,9 @@ public class King : Piece
 
         return endPositions;
     }
+    
+    public override string ToString()
+    {
+        return Color == Player.White ? "K" : "k";
+    }
 }

@@ -25,4 +25,9 @@ public class Bishop : Piece
                 endPosition => new Move(startPosition, endPosition))
             .ToList();
     }
+    
+    public override string ToString()
+    {
+        return Color == Player.White ? "B" : "b";
+    }
 }

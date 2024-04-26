@@ -13,10 +13,10 @@ public class Move
         EndPosition = endPosition;
     }
 
-    public void ExecuteMove(Board board)
+    public void Execute(Board board)
     {
         Piece piece = board[StartPosition];
         board[EndPosition] = piece;
-        board[StartPosition] = null;
+        board[StartPosition] = null!;
     }
 }
