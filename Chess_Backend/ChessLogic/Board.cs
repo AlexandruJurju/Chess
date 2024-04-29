@@ -52,10 +52,10 @@ public class Board
         this[7, 6] = new Knight(Player.White);
         this[7, 7] = new Rook(Player.White);
 
-        for (int i = 0; i < 8; i++)
-        {
-            this[6, i] = new Pawn(Player.White);
-        }
+        // for (int i = 0; i < 8; i++)
+        // {
+        //     this[6, i] = new Pawn(Player.White);
+        // }
     }
 
     public bool IsInside(Position position)

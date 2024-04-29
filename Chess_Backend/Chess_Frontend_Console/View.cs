@@ -103,7 +103,7 @@ public class View
 
     public Position ReadStartPosition()
     {
-        return ReadPosition("Enter Start Position (row, column): ");
+        return ReadPosition("Enter Run Position (row, column): ");
     }
 
     public Position ReadEndPosition()
@@ -122,7 +122,54 @@ public class View
         return new Move(startPosition, endPosition);
     }
 
-    public void PrintPossibleMoves(List<Move> moves)
+    public void PrintBoardWithPossibleMoves(Game game, List<Move> possibleMoves)
+    {
+        string[,] notation = GetBoardAsString(game.Board);
+        var possibleEndPositions = new HashSet<Position>(possibleMoves.Select(move => move.EndPosition));
+
+        for (int i = 0; i < 8; i++)
+        {
+            Console.Write(i + " ");
+
+            for (int j = 0; j < 8; j++)
+            {
+                Position currentPosition = new Position(i, j);
+
+                if (possibleEndPositions.Contains(currentPosition) && (!game.Board.IsEmpty(currentPosition) && game.Board[currentPosition].Color != game.CurrentPlayer))
+                {
+                    // If the position contains an enemy piece, print it in red
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{notation[i, j]} ");
+                }
+                else if (possibleEndPositions.Contains(currentPosition))
+                {
+                    // If the position is a possible end position, print an "O" in green
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("O ");
+                }
+                else
+                {
+                    Console.Write($"{notation[i, j]} ");
+                }
+
+                // Reset the color back to the default
+                Console.ResetColor();
+            }
+
+            Console.WriteLine();
+        }
+
+        Console.Write("  ");
+        for (int j = 0; j < 8; j++)
+        {
+            Console.Write(j + " ");
+        }
+
+        Console.WriteLine();
+    }
+
+
+    public void PrintPossibleEndPositions(List<Move> moves)
     {
         Console.WriteLine("Possible moves:");
         foreach (var move in moves)
@@ -131,5 +178,10 @@ public class View
         }
 
         Console.WriteLine();
+    }
+
+    public void DisplayMessage(string message)
+    {
+        Console.WriteLine(message);
     }
 }
