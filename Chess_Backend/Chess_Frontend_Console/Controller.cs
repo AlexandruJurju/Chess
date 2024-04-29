@@ -11,6 +11,12 @@ public class Controller
     {
         while (!Model.IsGameOver)
         {
+            View.PrintCurrentPlayer(Model);
+            if (Model.Board.IsInCheck(Model.CurrentPlayer))
+            {
+                Console.WriteLine("CHECK");
+            }
+
             View.PrintBoardWithIndexes(Model);
 
             var startPosition = GetStartPosition(out var possibleMoves);

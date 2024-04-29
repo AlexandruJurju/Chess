@@ -58,10 +58,13 @@ public class View
         Console.WriteLine();
     }
 
-    public void PrintBoardWithIndexes(Game game)
+    public void PrintCurrentPlayer(Game game)
     {
         Console.WriteLine($"Current Player: {game.CurrentPlayer}");
+    }
 
+    public void PrintBoardWithIndexes(Game game)
+    {
         string[,] notation = GetBoardAsString(game.Board);
 
         for (int i = 0; i < 8; i++)

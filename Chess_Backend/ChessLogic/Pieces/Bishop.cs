@@ -3,7 +3,7 @@
 public class Bishop : Piece
 {
     public override Player Color { get; }
-
+    
     private readonly Direction[] _moveDirections =
     {
         Directions.NorthWest,
@@ -25,7 +25,7 @@ public class Bishop : Piece
                 endPosition => new Move(startPosition, endPosition))
             .ToList();
     }
-    
+
     public override string ToString()
     {
         return Color == Player.White ? "B" : "b";

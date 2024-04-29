@@ -28,13 +28,6 @@ public class Game
     public void MakeMove(Move move)
     {
         move.Execute(Board);
-        if (CurrentPlayer == Player.White)
-        {
-            CurrentPlayer = Player.Black;
-        }
-        else
-        {
-            CurrentPlayer = Player.White;
-        }
+        CurrentPlayer = CurrentPlayer == Player.White ? Player.Black : Player.White;
     }
 }

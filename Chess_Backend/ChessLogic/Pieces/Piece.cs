@@ -4,7 +4,6 @@ public abstract class Piece
 {
     public abstract Player Color { get; }
     public abstract List<Move> GetValidMoves(Position startPosition, Board board);
-
     protected List<Position> FindValidPositions(Position startPosition, Board board, Direction[] directions)
     {
         List<Position> validPositions = new List<Position>();
@@ -33,6 +32,5 @@ public abstract class Piece
 
         return validPositions;
     }
-
     public abstract override string ToString();
 }

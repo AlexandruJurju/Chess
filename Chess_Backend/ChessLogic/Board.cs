@@ -38,10 +38,10 @@ public class Board
         this[0, 6] = new Knight(Player.Black);
         this[0, 7] = new Rook(Player.Black);
 
-        for (int i = 0; i < 8; i++)
-        {
-            this[1, i] = new Pawn(Player.Black);
-        }
+        // for (int i = 0; i < 8; i++)
+        // {
+        //     this[1, i] = new Pawn(Player.Black);
+        // }
 
         this[7, 0] = new Rook(Player.White);
         this[7, 1] = new Knight(Player.White);
@@ -56,6 +56,63 @@ public class Board
         // {
         //     this[6, i] = new Pawn(Player.White);
         // }
+    }
+
+    private List<Position> FindAllPositionsWithPieces()
+    {
+        List<Position> positions = new List<Position>();
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                Position currentPosition = new Position(i, j);
+                if (!IsEmpty(currentPosition))
+                {
+                    positions.Add(currentPosition);
+                }
+            }
+        }
+
+        return positions;
+    }
+
+    public List<Position> GetPositionsWithPiecesOfPlayer(Player player)
+    {
+        return FindAllPositionsWithPieces().Where(p => this[p].Color == player).ToList();
+    }
+
+    // TODO: check easier, find opponent king position and check if any piece can attack it
+    public bool IsInCheck(Player player)
+    {
+        List<Position> positions = GetPositionsWithPiecesOfPlayer(PlayerHelper.Opponent(player));
+
+        foreach (var position in positions)
+        {
+            Piece piece = this[position];
+            if (CanPieceAttackKing(piece, position))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool CanPieceAttackKing(Piece piece, Position position)
+    {
+        List<Move> validMoves = piece.GetValidMoves(position, this);
+
+        foreach (var move in validMoves)
+        {
+            Piece targetPiece = this[move.EndPosition];
+            // TODO Use a better way to check if piece is king
+            if (targetPiece != null && targetPiece.ToString().ToLower().Equals("k"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool IsInside(Position position)
