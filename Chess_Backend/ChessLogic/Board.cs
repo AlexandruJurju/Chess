@@ -67,27 +67,4 @@ public class Board
     {
         return this[position] == null;
     }
-
-    public string[,] GetChessNotations()
-    {
-        string[,] notations = new string[8, 8];
-
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                Piece piece = _pieces[i, j];
-                if (piece != null)
-                {
-                    notations[i, j] = piece.ToString();
-                }
-                else
-                {
-                    notations[i, j] = "X";
-                }
-            }
-        }
-
-        return notations;
-    }
 }

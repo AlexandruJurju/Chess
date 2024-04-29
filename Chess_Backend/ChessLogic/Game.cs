@@ -6,6 +6,7 @@ public class Game
 {
     public Board Board { get; }
     public Player CurrentPlayer { get; private set; }
+    public bool IsGameOver => false;
 
     public Game(Board board, Player currentPlayer)
     {

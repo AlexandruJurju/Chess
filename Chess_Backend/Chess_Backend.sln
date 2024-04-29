@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessLogic", "ChessLogic\ChessLogic.csproj", "{A2CEA921-910A-4B44-AF9F-7071F76EC066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_Frontend_Test", "Chess_Frontend_Test\Chess_Frontend_Test.csproj", "{F182EE50-CE4D-4863-BBF0-EE5A01DC0E79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_Frontend_Console", "Chess_Frontend_Console\Chess_Frontend_Console.csproj", "{F182EE50-CE4D-4863-BBF0-EE5A01DC0E79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

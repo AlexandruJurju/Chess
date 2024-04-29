@@ -5,6 +5,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Chess_Frontend_Test</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
