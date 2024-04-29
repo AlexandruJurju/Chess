@@ -17,7 +17,7 @@ public class Rook : Piece
         Color = color;
     }
 
-    public override List<Move> GetValidMoves(Position startPosition, Board board)
+    public override List<Move> GetMoves(Position startPosition, Board board)
     {
         List<Position> validEndPositions = FindValidPositions(startPosition, board, _directions);
         return validEndPositions.Select(

@@ -31,13 +31,13 @@ public class Controller
     private Position GetStartPosition(out List<Move> possibleMoves)
     {
         Position startPosition = View.ReadStartPosition();
-        possibleMoves = Model.FindMovesForPiece(startPosition);
+        possibleMoves = Model.FindLegalMovesForPiece(startPosition);
 
         while (possibleMoves.Count == 0)
         {
             View.DisplayMessage("No possible moves for this piece. Please choose another piece.");
             startPosition = View.ReadStartPosition();
-            possibleMoves = Model.FindMovesForPiece(startPosition);
+            possibleMoves = Model.FindLegalMovesForPiece(startPosition);
         }
 
         View.PrintBoardWithPossibleMoves(Model, possibleMoves);

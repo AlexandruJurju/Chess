@@ -19,4 +19,14 @@ public class Move
         board[EndPosition] = piece;
         board[StartPosition] = null!;
     }
+
+    // Move is legal if after the player movies, the king of the player that executed the move is not in check
+    // TODO: use a faster method 
+    public bool IsLegal(Board board)
+    {
+        Player player = board[StartPosition].Color;
+        Board boardCopy = board.DeepCopy();
+        Execute(boardCopy);
+        return !boardCopy.IsInCheck(player);
+    }
 }

@@ -9,7 +9,7 @@ public class Knight : Piece
         Color = color;
     }
 
-    public override List<Move> GetValidMoves(Position startPosition, Board board)
+    public override List<Move> GetMoves(Position startPosition, Board board)
     {
         List<Position> validJumpPositions = FindValidJumpPositions(startPosition, board);
         return validJumpPositions.Select(

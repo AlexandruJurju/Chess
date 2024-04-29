@@ -17,7 +17,7 @@ public class Bishop : Piece
         Color = color;
     }
 
-    public override List<Move> GetValidMoves(Position startPosition, Board board)
+    public override List<Move> GetMoves(Position startPosition, Board board)
     {
         List<Position> validEndPositions = FindValidPositions(startPosition, board, _moveDirections);
         return validEndPositions

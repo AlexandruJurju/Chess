@@ -18,7 +18,7 @@ public class Pawn : Piece
         }
     }
 
-    public override List<Move> GetValidMoves(Position startPosition, Board board)
+    public override List<Move> GetMoves(Position startPosition, Board board)
     {
         return GenerateForwardMoves(startPosition, board);
     }

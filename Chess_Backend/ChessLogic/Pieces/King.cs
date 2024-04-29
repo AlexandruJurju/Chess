@@ -21,7 +21,7 @@ public class King : Piece
         Color = color;
     }
 
-    public override List<Move> GetValidMoves(Position startPosition, Board board)
+    public override List<Move> GetMoves(Position startPosition, Board board)
     {
         return FindEndPositions(startPosition, board)
             .Select(endPosition => new Move(startPosition, endPosition))

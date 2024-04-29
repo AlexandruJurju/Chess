@@ -76,7 +76,7 @@ public class Board
         return positions;
     }
 
-    public List<Position> GetPositionsWithPiecesOfPlayer(Player player)
+    public List<Position> GetPositionsWithPiecesOf(Player player)
     {
         return FindAllPositionsWithPieces().Where(p => this[p].Color == player).ToList();
     }
@@ -84,7 +84,7 @@ public class Board
     // TODO: check easier, find opponent king position and check if any piece can attack it
     public bool IsInCheck(Player player)
     {
-        List<Position> positions = GetPositionsWithPiecesOfPlayer(PlayerHelper.Opponent(player));
+        List<Position> positions = GetPositionsWithPiecesOf(PlayerHelper.Opponent(player));
 
         foreach (var position in positions)
         {
@@ -100,7 +100,7 @@ public class Board
 
     private bool CanPieceAttackKing(Piece piece, Position position)
     {
-        List<Move> validMoves = piece.GetValidMoves(position, this);
+        List<Move> validMoves = piece.GetMoves(position, this);
 
         foreach (var move in validMoves)
         {
@@ -113,6 +113,17 @@ public class Board
         }
 
         return false;
+    }
+
+    public Board DeepCopy()
+    {
+        Board boardCopy = new Board();
+        foreach (Position position in FindAllPositionsWithPieces())
+        {
+            boardCopy[position] = this[position].DeepCopy();
+        }
+
+        return boardCopy;
     }
 
     public bool IsInside(Position position)
