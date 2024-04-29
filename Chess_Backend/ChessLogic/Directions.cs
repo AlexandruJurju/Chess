@@ -1,14 +1,14 @@
 ﻿namespace ChessLogic;
 
-public class Directions
+public static class Directions
 {
-    public static Direction North = new Direction(0, -1);
-    public static Direction South = new Direction(0, 1);
-    public static Direction East = new Direction(1, 0);
-    public static Direction West = new Direction(-1, 0);
+    public static readonly Direction North = new(-1, 0);
+    public static readonly Direction South = new(1, 0);
+    public static readonly Direction East = new(0, 1);
+    public static readonly Direction West = new(0, -1);
 
-    public static Direction NE = North + East;
-    public static Direction NW = North + West;
-    public static Direction SE = South + East;
-    public static Direction SW = South + West;
+    public static readonly Direction NorthEast = North + East;
+    public static readonly Direction NorthWest = North + West;
+    public static readonly Direction SouthEast = South + East;
+    public static readonly Direction SouthWest = South + West;
 }

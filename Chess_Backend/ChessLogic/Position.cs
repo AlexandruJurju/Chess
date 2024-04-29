@@ -20,7 +20,7 @@ public class Position
 
         return Player.Black;
     }
-    
+
     protected bool Equals(Position other)
     {
         return Row == other.Row && Column == other.Column;
@@ -54,5 +54,12 @@ public class Position
         return new Position(
             position.Row + direction.RowChange,
             position.Column + direction.ColumnChange);
+    }
+
+    public override string ToString()
+    {
+        char column = (char)('a' + Column);
+        int row = 8 - Row;
+        return $"{column}{row}";
     }
 }

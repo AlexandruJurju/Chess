@@ -10,10 +10,10 @@ public class King : Piece
         Directions.East,
         Directions.South,
         Directions.West,
-        Directions.NE,
-        Directions.NW,
-        Directions.SE,
-        Directions.SW,
+        Directions.NorthEast,
+        Directions.NorthWest,
+        Directions.SouthEast,
+        Directions.SouthWest,
     };
 
     public King(Player color)

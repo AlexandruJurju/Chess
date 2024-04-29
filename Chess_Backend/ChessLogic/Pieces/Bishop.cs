@@ -6,10 +6,10 @@ public class Bishop : Piece
 
     private readonly Direction[] _moveDirections =
     {
-        Directions.NW,
-        Directions.NE,
-        Directions.SE,
-        Directions.SW,
+        Directions.NorthWest,
+        Directions.NorthEast,
+        Directions.SouthEast,
+        Directions.SouthWest,
     };
 
     public Bishop(Player color)

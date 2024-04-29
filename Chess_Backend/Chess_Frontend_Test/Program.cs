@@ -9,9 +9,11 @@ class Program
         Game game = new Game(new Board().Initialize(), Player.White);
         PrintBoard(game);
 
-        game.MakeMove(new Move(new Position(0, 0), new Position(2, 0)));
-        PrintBoard(game);
-
+        List<Move> moves = game.FindMovesForPiece(new Position(6, 0));
+        foreach (var move in moves)
+        {
+            Console.WriteLine(move.StartPosition + " " + move.EndPosition);
+        }
     }
 
     private static void PrintBoard(Game game)
