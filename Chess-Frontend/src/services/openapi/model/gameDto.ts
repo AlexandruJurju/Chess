@@ -9,8 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { PieceDto } from './pieceDto';
+import { BoardDto } from './boardDto';
+import { Player } from './player';
 
-export interface BoardDto { 
-    pieces?: Array<PieceDto>;
+export interface GameDto { 
+    boardDto?: BoardDto;
+    player?: Player;
 }

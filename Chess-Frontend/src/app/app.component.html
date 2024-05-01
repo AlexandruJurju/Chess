@@ -6,9 +6,9 @@
          [ngClass]="{'valid': isMoveValid({row: row, column: col})}"
          class="square"
          (click)="movePiece({row: row, column: col})">
-      <img *ngIf="boardDto && boardDto.pieces && boardDto.pieces[row * 8 + col]"
-           (click)="selectPiece(boardDto.pieces[row * 8 + col]); $event.stopPropagation()"
-           [src]="getPieceImage(boardDto.pieces[row * 8 + col])"
+      <img *ngIf="gameDto.boardDto && gameDto.boardDto.pieces && gameDto.boardDto.pieces[row * 8 + col]"
+           (click)="selectPiece(gameDto.boardDto.pieces[row * 8 + col]); $event.stopPropagation()"
+           [src]="getPieceImage(gameDto.boardDto.pieces[row * 8 + col])"
            [alt]="404">
     </div>
   </div>

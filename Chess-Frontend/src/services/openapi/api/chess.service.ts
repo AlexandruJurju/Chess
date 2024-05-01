@@ -17,7 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { BoardDto } from '../model/boardDto';
+import { GameDto } from '../model/gameDto';
 import { Move } from '../model/move';
 import { Position } from '../model/position';
 
@@ -63,9 +63,9 @@ export class ChessService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBoard(observe?: 'body', reportProgress?: boolean): Observable<BoardDto>;
-    public getBoard(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<BoardDto>>;
-    public getBoard(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<BoardDto>>;
+    public getBoard(observe?: 'body', reportProgress?: boolean): Observable<GameDto>;
+    public getBoard(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GameDto>>;
+    public getBoard(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GameDto>>;
     public getBoard(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -85,7 +85,7 @@ export class ChessService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<BoardDto>('get',`${this.basePath}/api/Chess`,
+        return this.httpClient.request<GameDto>('get',`${this.basePath}/api/Chess`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -150,9 +150,9 @@ export class ChessService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public makeMove(body?: Move, observe?: 'body', reportProgress?: boolean): Observable<BoardDto>;
-    public makeMove(body?: Move, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<BoardDto>>;
-    public makeMove(body?: Move, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<BoardDto>>;
+    public makeMove(body?: Move, observe?: 'body', reportProgress?: boolean): Observable<GameDto>;
+    public makeMove(body?: Move, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GameDto>>;
+    public makeMove(body?: Move, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GameDto>>;
     public makeMove(body?: Move, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
@@ -180,7 +180,7 @@ export class ChessService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<BoardDto>('post',`${this.basePath}/api/Chess/move`,
+        return this.httpClient.request<GameDto>('post',`${this.basePath}/api/Chess/move`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

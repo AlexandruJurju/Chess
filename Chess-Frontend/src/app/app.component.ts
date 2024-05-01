@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {NgClass, NgForOf, NgIf} from "@angular/common";
-import {ApiModule, BoardDto, ChessService, Move, PieceDto, Player, Position} from "../services/openapi";
+import {ApiModule, ChessService, GameDto, Move, PieceDto, Position} from "../services/openapi";
 
 
 @Component({
@@ -12,7 +12,7 @@ import {ApiModule, BoardDto, ChessService, Move, PieceDto, Player, Position} fro
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  boardDto: BoardDto = {} as BoardDto;
+  gameDto: GameDto = {} as GameDto;
   validMoves: Move[] = [];
   selectedPiece: PieceDto | null = null;
 
@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
 
   // Function to get the current board state from the ChessService
   updateBoard() {
-    this.chessService.getBoard().subscribe(board => {
-      this.boardDto = board;
-      console.log(this.boardDto)
+    this.chessService.getBoard().subscribe(game => {
+      this.gameDto = game;
+      console.log(this.gameDto)
     });
   }
 
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   // Function to get the current player
   getCurrentPlayer(): string {
-    return this.boardDto.player!;
+    return this.gameDto.player!;
   }
 
   // Function to select a piece and get its valid moves
@@ -65,8 +65,8 @@ export class AppComponent implements OnInit {
         startPosition: this.selectedPiece.position,
         endPosition: position
       };
-      this.chessService.makeMove(move).subscribe(board => {
-        this.boardDto = board; // Update the board
+      this.chessService.makeMove(move).subscribe(game => {
+        this.gameDto = game; // Update the game
         this.validMoves = []; // Clear the valid moves
         this.selectedPiece = null; // Deselect the piece
       });
