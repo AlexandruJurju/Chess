@@ -1,7 +1,9 @@
 <div class="chess-board">
-  <div class="row" *ngFor="let row of chessBoard">
-    <div class="cell" *ngFor="let cell of row">
-      <img *ngIf="cell" [src]="pieceImages[cell]" alt="{{ cell }} ">
+  <div *ngFor="let row of [0, 1, 2, 3, 4, 5, 6, 7]" class="row">
+    <div *ngFor="let col of [0, 1, 2, 3, 4, 5, 6, 7]" class="square">
+      <img *ngIf="boardDto && boardDto.pieces && boardDto.pieces[row * 8 + col]"
+           [src]="getPieceImage(boardDto.pieces[row * 8 + col])"
+           [alt]="404">
     </div>
   </div>
 </div>
