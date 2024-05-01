@@ -4,7 +4,7 @@ namespace Chess_Frontend_Test;
 
 public class Controller
 {
-    private Game Model { get; set; } = new(new Board().Initialize(), Player.White);
+    private Game Model { get; set; } = new(new Board(), Player.White);
     private View View { get; set; } = new();
 
     public void Run()

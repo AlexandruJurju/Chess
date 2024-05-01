@@ -1,10 +1,16 @@
-﻿using ChessLogic.Pieces;
+﻿using System.Text;
+using ChessLogic.Pieces;
 
 namespace ChessLogic;
 
 public class Board
 {
     private readonly Piece[,] _pieces = new Piece[8, 8];
+
+    public Board()
+    {
+        PlaceStartingPieces();
+    }
 
     // setup indexer to access board like a 2d matrix
     public Piece this[int row, int col]
@@ -18,13 +24,6 @@ public class Board
     {
         get => this[position.Row, position.Column];
         set => _pieces[position.Row, position.Column] = value;
-    }
-
-    public Board Initialize()
-    {
-        Board board = new Board();
-        board.PlaceStartingPieces();
-        return board;
     }
 
     private void PlaceStartingPieces()
@@ -134,5 +133,21 @@ public class Board
     public bool IsEmpty(Position position)
     {
         return this[position] == null;
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                Piece piece = _pieces[i, j];
+                sb.Append(piece != null ? piece.ToString() : " ");
+                sb.Append(" ");
+            }
+            sb.AppendLine();
+        }
+        return sb.ToString();
     }
 }
