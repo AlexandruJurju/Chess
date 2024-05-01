@@ -16,10 +16,10 @@ namespace Chess_Api.Controllers
 
         // GET api/chess
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(Board))]
+        [ProducesResponseType(200, Type = typeof(string))]
         public IActionResult GetBoard()
         {
-            return Ok(_game.Board);
+            return Ok(_game.Board.ToString());
         }
 
         // POST api/chess/move
@@ -28,6 +28,13 @@ namespace Chess_Api.Controllers
         {
             _game.MakeMove(move);
             return Ok();
+        }
+
+        [HttpPost("legal")]
+        [ProducesResponseType(200, Type = typeof(List<Move>))]
+        public IActionResult GetLegalMovesForPiece([FromBody] Position position)
+        {
+            return Ok(_game.FindLegalMovesForPiece(position));
         }
     }
 }
