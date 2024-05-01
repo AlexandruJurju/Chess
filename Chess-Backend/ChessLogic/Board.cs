@@ -106,7 +106,7 @@ public class Board
         {
             Piece targetPiece = this[move.EndPosition];
             // TODO Use a better way to check if piece is king
-            if (targetPiece != null && targetPiece.ToString().ToLower().Equals("k"))
+            if (targetPiece != null && targetPiece.Type == PieceType.King)
             {
                 return true;
             }

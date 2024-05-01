@@ -10,7 +10,6 @@ public class Game
     public bool IsGameOver
     {
         get => false;
-        set => IsGameOver = value;
     }
 
     public Game(Board board, Player currentPlayer)
@@ -29,6 +28,11 @@ public class Game
         Piece piece = Board[position];
         List<Move> possibleMovies = piece.GetMoves(position, Board);
         return possibleMovies.Where(move => move.IsLegal(Board)).ToList();
+    }
+
+    public bool IsPlayerInCheck(Player player)
+    {
+        return Board.IsInCheck(player);
     }
 
     private List<Move> FindAllLegalMovesFor(Player player)

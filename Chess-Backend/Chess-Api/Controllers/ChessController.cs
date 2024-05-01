@@ -48,6 +48,8 @@ namespace Chess_Api.Controllers
             GameDto gameDto = new()
             {
                 BoardDto = boardDto,
+                // calculate check after the move, if CURRENT PLAYER is in check
+                IsInCheck = _game.IsPlayerInCheck(_game.CurrentPlayer),
                 Player = _game.CurrentPlayer
             };
 
