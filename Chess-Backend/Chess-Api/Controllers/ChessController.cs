@@ -25,6 +25,13 @@ namespace Chess_Api.Controllers
             return Ok(boardDto);
         }
 
+        [HttpPost("valid")]
+        [ProducesResponseType(200, Type = typeof(List<Move>))]
+        public IActionResult GetValidMoves([FromBody] Position position)
+        {
+            return Ok(_game.FindLegalMovesForPiece(position));
+        }
+
         // POST api/chess/move
         [HttpPost("move")]
         public IActionResult MakeMove([FromBody] Move move)

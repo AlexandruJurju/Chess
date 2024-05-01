@@ -38,10 +38,10 @@ public class Board
         this[0, 6] = new Knight(Player.Black);
         this[0, 7] = new Rook(Player.Black);
 
-        for (int i = 0; i < 8; i++)
-        {
-            this[1, i] = new Pawn(Player.Black);
-        }
+        // for (int i = 0; i < 8; i++)
+        // {
+        //     this[1, i] = new Pawn(Player.Black);
+        // }
 
         this[7, 0] = new Rook(Player.White);
         this[7, 1] = new Knight(Player.White);
@@ -52,10 +52,10 @@ public class Board
         this[7, 6] = new Knight(Player.White);
         this[7, 7] = new Rook(Player.White);
 
-        for (int i = 0; i < 8; i++)
-        {
-            this[6, i] = new Pawn(Player.White);
-        }
+        // for (int i = 0; i < 8; i++)
+        // {
+        //     this[6, i] = new Pawn(Player.White);
+        // }
     }
 
     private List<Position> FindAllPositionsWithPieces()
