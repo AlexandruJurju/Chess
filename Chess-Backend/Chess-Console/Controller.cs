@@ -9,7 +9,7 @@ public class Controller
 
     public void Run()
     {
-        while (!Model.IsGameOver)
+        while (!Model.IsPlayerInCheckMate(Model.CurrentPlayer))
         {
             View.PrintCurrentPlayer(Model);
             if (Model.Board.IsInCheck(Model.CurrentPlayer))
@@ -31,13 +31,13 @@ public class Controller
     private Position GetStartPosition(out List<Move> possibleMoves)
     {
         Position startPosition = View.ReadStartPosition();
-        possibleMoves = Model.FindLegalMovesForPiece(startPosition);
+        possibleMoves = Model.FindAllLegalMovesFor(startPosition);
 
         while (possibleMoves.Count == 0)
         {
             View.DisplayMessage("No possible moves for this piece. Please choose another piece.");
             startPosition = View.ReadStartPosition();
-            possibleMoves = Model.FindLegalMovesForPiece(startPosition);
+            possibleMoves = Model.FindAllLegalMovesFor(startPosition);
         }
 
         View.PrintBoardWithPossibleMoves(Model, possibleMoves);

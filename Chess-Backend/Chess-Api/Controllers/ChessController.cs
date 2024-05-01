@@ -36,7 +36,7 @@ namespace Chess_Api.Controllers
         [ProducesResponseType(200, Type = typeof(List<Move>))]
         public IActionResult GetValidMoves([FromBody] Position position)
         {
-            return Ok(_game.FindLegalMovesForPiece(position));
+            return Ok(_game.FindAllLegalMovesFor(position));
         }
 
         [HttpPost("move")]
@@ -50,6 +50,7 @@ namespace Chess_Api.Controllers
                 BoardDto = boardDto,
                 // calculate check after the move, if CURRENT PLAYER is in check
                 IsInCheck = _game.IsPlayerInCheck(_game.CurrentPlayer),
+                IsCheckMate = _game.IsPlayerInCheckMate(_game.CurrentPlayer),
                 Player = _game.CurrentPlayer
             };
 

@@ -7,18 +7,24 @@ public class Game
     public Board Board { get; }
     public Player CurrentPlayer { get; private set; }
 
-    public bool IsGameOver
-    {
-        get => false;
-    }
-
     public Game(Board board, Player currentPlayer)
     {
         Board = board;
         CurrentPlayer = currentPlayer;
     }
 
-    public List<Move> FindLegalMovesForPiece(Position position)
+    public List<Move> FindAllPossibleMovesFor(Position position)
+    {
+        if (Board.IsEmpty(position) || Board[position].Color != CurrentPlayer)
+        {
+            return new List<Move>();
+        }
+
+        Piece piece = Board[position];
+        return piece.GetMoves(position, Board);
+    }
+
+    public List<Move> FindAllLegalMovesFor(Position position)
     {
         if (Board.IsEmpty(position) || Board[position].Color != CurrentPlayer)
         {
@@ -33,6 +39,11 @@ public class Game
     public bool IsPlayerInCheck(Player player)
     {
         return Board.IsInCheck(player);
+    }
+
+    public bool IsPlayerInCheckMate(Player player)
+    {
+        return FindAllLegalMovesFor(player).Count == 0;
     }
 
     private List<Move> FindAllLegalMovesFor(Player player)
