@@ -1,11 +1,14 @@
 using System.Text.Json.Serialization;
+using Chess_Api.Helper;
 using ChessLogic;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 Game game = new(new Board(), Player.White);
+BoardMapper boardMapper = new BoardMapper();
 
+builder.Services.AddSingleton(boardMapper);
 builder.Services.AddSingleton(game);
 
 builder.Services.AddControllers()

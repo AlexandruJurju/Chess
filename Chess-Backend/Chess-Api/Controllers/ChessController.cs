@@ -1,4 +1,5 @@
 ﻿using Chess_Api.Dto;
+using Chess_Api.Helper;
 using ChessLogic;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace Chess_Api.Controllers
     public class ChessController : ControllerBase
     {
         private readonly Game _game;
+        private readonly BoardMapper _mapper;
 
-        public ChessController(Game game)
+        public ChessController(Game game, BoardMapper mapper)
         {
             _game = game;
+            _mapper = mapper;
         }
 
         // GET api/chess
@@ -20,7 +23,8 @@ namespace Chess_Api.Controllers
         [ProducesResponseType(200, Type = typeof(BoardDto))]
         public IActionResult GetBoard()
         {
-            BoardDto boardDto = BoardDto.ConvertToDto(_game.Board);
+            BoardDto boardDto = _mapper.ToDto(_game.Board);
+            boardDto.Player = _game.CurrentPlayer;
 
             return Ok(boardDto);
         }
