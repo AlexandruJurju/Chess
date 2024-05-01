@@ -15,4 +15,5 @@ import { Player } from './player';
 export interface GameDto { 
     boardDto?: BoardDto;
     player?: Player;
+    isInCheck?: boolean;
 }

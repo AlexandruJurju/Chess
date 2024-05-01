@@ -86,4 +86,8 @@ export class AppComponent implements OnInit {
     // @ts-ignore
     return this.validMoves.some(move => move.endPosition.row === position.row && move.endPosition.column === position.column);
   }
+
+  checkForCheck():boolean {
+    return this.gameDto.isInCheck!;
+  }
 }
