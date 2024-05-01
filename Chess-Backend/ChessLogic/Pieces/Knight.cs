@@ -3,6 +3,8 @@
 public class Knight : Piece
 {
     public override Player Color { get; }
+    public override PieceType Type => PieceType.Knight;
+
 
     public Knight(Player color)
     {
@@ -35,9 +37,5 @@ public class Knight : Piece
             .Where(position => board.IsInside(position) && (board.IsEmpty(position) || board[position].Color != Color))
             .ToList();
     }
-
-    public override string ToString()
-    {
-        return Color == Player.White ? "N" : "n";
-    }
+    
 }

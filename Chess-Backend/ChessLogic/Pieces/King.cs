@@ -3,6 +3,8 @@
 public class King : Piece
 {
     public override Player Color { get; }
+    public override PieceType Type => PieceType.King;
+
 
     private readonly Direction[] _directions =
     {
@@ -44,8 +46,4 @@ public class King : Piece
         return endPositions;
     }
     
-    public override string ToString()
-    {
-        return Color == Player.White ? "K" : "k";
-    }
 }

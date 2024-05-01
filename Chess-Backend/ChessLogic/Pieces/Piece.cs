@@ -3,6 +3,7 @@
 public abstract class Piece
 {
     public abstract Player Color { get; }
+    public abstract PieceType Type { get; }
     public abstract List<Move> GetMoves(Position startPosition, Board board);
 
     protected List<Position> FindValidPositions(Position startPosition, Board board, Direction[] directions)
@@ -33,9 +34,7 @@ public abstract class Piece
 
         return validPositions;
     }
-
-    public abstract override string ToString();
-
+    
     public Piece DeepCopy()
     {
         return (Piece)MemberwiseClone();

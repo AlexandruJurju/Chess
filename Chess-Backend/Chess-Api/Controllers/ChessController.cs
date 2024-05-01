@@ -1,4 +1,5 @@
-﻿using ChessLogic;
+﻿using Chess_Api.Dto;
+using ChessLogic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chess_Api.Controllers
@@ -16,10 +17,12 @@ namespace Chess_Api.Controllers
 
         // GET api/chess
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(Board))]
+        [ProducesResponseType(200, Type = typeof(BoardDto))]
         public IActionResult GetBoard()
         {
-            return Ok(_game.Board);
+            BoardDto boardDto = BoardDto.ConvertToDto(_game.Board);
+
+            return Ok(boardDto);
         }
 
         // POST api/chess/move

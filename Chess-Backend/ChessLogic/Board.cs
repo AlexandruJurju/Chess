@@ -5,7 +5,7 @@ namespace ChessLogic;
 
 public class Board
 {
-    private readonly Piece[,] _pieces = new Piece[8, 8];
+    private Piece[,] Pieces { get; set; }
 
     public Board()
     {
@@ -15,19 +15,20 @@ public class Board
     // setup indexer to access board like a 2d matrix
     public Piece this[int row, int col]
     {
-        get => _pieces[row, col];
-        set => _pieces[row, col] = value;
+        get => Pieces[row, col];
+        set => Pieces[row, col] = value;
     }
 
     // indexer to use position object as an index to the matrix
     public Piece this[Position position]
     {
         get => this[position.Row, position.Column];
-        set => _pieces[position.Row, position.Column] = value;
+        set => Pieces[position.Row, position.Column] = value;
     }
 
     private void PlaceStartingPieces()
     {
+        Pieces = new Piece[8, 8];
         this[0, 0] = new Rook(Player.Black);
         this[0, 1] = new Knight(Player.Black);
         this[0, 2] = new Bishop(Player.Black);
@@ -37,10 +38,10 @@ public class Board
         this[0, 6] = new Knight(Player.Black);
         this[0, 7] = new Rook(Player.Black);
 
-        // for (int i = 0; i < 8; i++)
-        // {
-        //     this[1, i] = new Pawn(Player.Black);
-        // }
+        for (int i = 0; i < 8; i++)
+        {
+            this[1, i] = new Pawn(Player.Black);
+        }
 
         this[7, 0] = new Rook(Player.White);
         this[7, 1] = new Knight(Player.White);
@@ -51,10 +52,10 @@ public class Board
         this[7, 6] = new Knight(Player.White);
         this[7, 7] = new Rook(Player.White);
 
-        // for (int i = 0; i < 8; i++)
-        // {
-        //     this[6, i] = new Pawn(Player.White);
-        // }
+        for (int i = 0; i < 8; i++)
+        {
+            this[6, i] = new Pawn(Player.White);
+        }
     }
 
     private List<Position> FindAllPositionsWithPieces()
@@ -142,12 +143,14 @@ public class Board
         {
             for (int j = 0; j < 8; j++)
             {
-                Piece piece = _pieces[i, j];
+                Piece piece = Pieces[i, j];
                 sb.Append(piece != null ? piece.ToString() : " ");
                 sb.Append(" ");
             }
+
             sb.AppendLine();
         }
+
         return sb.ToString();
     }
 }

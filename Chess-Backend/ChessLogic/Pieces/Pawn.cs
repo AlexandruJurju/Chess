@@ -3,6 +3,8 @@
 public class Pawn : Piece
 {
     public override Player Color { get; }
+    public override PieceType Type => PieceType.Pawn;
+
     private readonly Direction _forward;
 
     public Pawn(Player color)
@@ -44,10 +46,5 @@ public class Pawn : Piece
         return validEndPositions.Select(
                 endPosition => new Move(startPosition, endPosition))
             .ToList();
-    }
-    
-    public override string ToString()
-    {
-        return Color == Player.White ? "P" : "p";
     }
 }

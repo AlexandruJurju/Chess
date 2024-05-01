@@ -3,6 +3,8 @@
 public class Queen : Piece
 {
     public override Player Color { get; }
+    public override PieceType Type => PieceType.Queen;
+
 
     private readonly Direction[] _directions =
     {
@@ -28,9 +30,5 @@ public class Queen : Piece
                 endPosition => new Move(startPosition, endPosition))
             .ToList();
     }
-
-    public override string ToString()
-    {
-        return Color == Player.White ? "Q" : "q";
-    }
+    
 }
