@@ -24,10 +24,7 @@ public abstract class Piece
                     {
                         validPositions.Add(currentPosition);
                     }
-                    else
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
         }
