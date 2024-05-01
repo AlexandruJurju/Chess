@@ -90,4 +90,8 @@ export class AppComponent implements OnInit {
   checkForCheck():boolean {
     return this.gameDto.isInCheck!;
   }
+
+  checkForCheckMate():boolean{
+    return this.gameDto.isCheckMate!;
+  }
 }
