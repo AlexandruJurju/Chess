@@ -1,4 +1,5 @@
-<!-- In your HTML -->
+<p>Current Player: {{ getCurrentPlayer() }}</p>
+
 <div class="chess-board">
   <div *ngFor="let row of [0, 1, 2, 3, 4, 5, 6, 7]" class="row">
     <div *ngFor="let col of [0, 1, 2, 3, 4, 5, 6, 7]"

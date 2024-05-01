@@ -12,8 +12,7 @@ import {ApiModule, BoardDto, ChessService, Move, PieceDto, Player, Position} fro
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  // @ts-ignore
-  boardDto: BoardDto;
+  boardDto: BoardDto = {} as BoardDto;
   validMoves: Move[] = [];
 
   constructor(private chessService: ChessService) {
@@ -29,6 +28,10 @@ export class AppComponent implements OnInit {
   getPieceImage(piece: PieceDto): string {
     // @ts-ignore
     return `../assets/pieces/${piece.color}-${piece.type}.png`;
+  }
+
+  getCurrentPlayer(): string {
+    return this.boardDto.player!;
   }
 
   getValidMoves(position: Position) {

@@ -10,7 +10,9 @@
  * Do not edit the class manually.
  */
 import { PieceDto } from './pieceDto';
+import { Player } from './player';
 
 export interface BoardDto { 
     pieces?: Array<PieceDto>;
+    player?: Player;
 }
