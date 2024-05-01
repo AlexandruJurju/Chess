@@ -42,20 +42,9 @@ public class Game
         return possibleMoves.Where(move => move.IsLegal(Board)).ToList();
     }
 
-    private void CheckForGameOver()
-    {
-        if (!FindAllLegalMovesFor(CurrentPlayer).Any())
-        {
-            IsGameOver = true;
-        }
-
-        IsGameOver = false;
-    }
-
     public void MakeMove(Move move)
     {
         move.Execute(Board);
         CurrentPlayer = CurrentPlayer == Player.White ? Player.Black : Player.White;
-        CheckForGameOver();
     }
 }
