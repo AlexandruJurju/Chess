@@ -19,13 +19,17 @@ namespace Chess_Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(BoardDto))]
+        [ProducesResponseType(200, Type = typeof(GameDto))]
         public IActionResult GetBoard()
         {
             BoardDto boardDto = _mapper.ToDto(_game.Board);
-            boardDto.Player = _game.CurrentPlayer;
+            GameDto gameDto = new()
+            {
+                BoardDto = boardDto,
+                Player = _game.CurrentPlayer
+            };
 
-            return Ok(boardDto);
+            return Ok(gameDto);
         }
 
         [HttpPost("valid")]
@@ -36,14 +40,18 @@ namespace Chess_Api.Controllers
         }
 
         [HttpPost("move")]
-        [ProducesResponseType(200, Type = typeof(BoardDto))]
+        [ProducesResponseType(200, Type = typeof(GameDto))]
         public IActionResult MakeMove([FromBody] Move move)
         {
             _game.MakeMove(move);
             BoardDto boardDto = _mapper.ToDto(_game.Board);
-            boardDto.Player = _game.CurrentPlayer;
+            GameDto gameDto = new()
+            {
+                BoardDto = boardDto,
+                Player = _game.CurrentPlayer
+            };
 
-            return Ok(boardDto);
+            return Ok(gameDto);
         }
     }
 }

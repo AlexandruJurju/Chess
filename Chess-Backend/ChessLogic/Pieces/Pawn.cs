@@ -47,4 +47,9 @@ public class Pawn : Piece
                 endPosition => new Move(startPosition, endPosition))
             .ToList();
     }
+
+    public override string ToString()
+    {
+        return Color == Player.White ? "P" : "p";
+    }
 }

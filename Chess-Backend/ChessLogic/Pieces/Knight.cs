@@ -37,5 +37,9 @@ public class Knight : Piece
             .Where(position => board.IsInside(position) && (board.IsEmpty(position) || board[position].Color != Color))
             .ToList();
     }
-    
+
+    public override string ToString()
+    {
+        return Color == Player.White ? "N" : "n";
+    }
 }
