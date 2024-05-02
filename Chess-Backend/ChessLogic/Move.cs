@@ -18,6 +18,7 @@ public class Move
         Piece piece = board[StartPosition];
         board[EndPosition] = piece;
         board[StartPosition] = null!;
+        piece.HasBeenMoved = true;
     }
 
     // Move is legal if after the player movies, the king of the player that executed the move is not in check

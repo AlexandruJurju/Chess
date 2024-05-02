@@ -10,42 +10,64 @@ public class Pawn : Piece
     public Pawn(Player color)
     {
         Color = color;
-        if (color == Player.White)
-        {
-            _forward = Directions.North;
-        }
-        else
-        {
-            _forward = Directions.South;
-        }
+        _forward = color == Player.White ? Directions.North : Directions.South;
     }
 
     public override List<Move> GetMoves(Position startPosition, Board board)
     {
-        return GenerateForwardMoves(startPosition, board);
+        List<Move> moves = new List<Move>();
+
+        moves.AddRange(GenerateForwardMoves(startPosition, board));
+        moves.AddRange(GenerateDiagonalMoves(startPosition, board));
+
+        return moves;
     }
 
-    // TODO: add diagonal movies
+    private List<Move> GenerateDiagonalMoves(Position startPosition, Board board)
+    {
+        List<Move> validMoves = new List<Move>();
+
+        Direction[] diagonalDirections = { Directions.East, Directions.West };
+
+        foreach (var direction in diagonalDirections)
+        {
+            Position endPosition = startPosition + _forward + direction;
+            if (CanCapture(board, endPosition))
+            {
+                validMoves.Add(new Move(startPosition, endPosition));
+            }
+        }
+
+        return validMoves;
+    }
+
     private List<Move> GenerateForwardMoves(Position startPosition, Board board)
     {
-        List<Position> validEndPositions = new List<Position>();
+        List<Move> validMoves = new List<Move>();
 
         Position oneForward = startPosition + _forward;
-        if (board.IsInside(oneForward) && (board.IsEmpty(oneForward) || board[oneForward].Color != Color))
+
+        if (IsEmpty(board, oneForward))
         {
-            validEndPositions.Add(oneForward);
+            validMoves.Add(new Move(startPosition, oneForward));
+
+            if (!HasBeenMoved && IsEmpty(board, oneForward + _forward))
+            {
+                validMoves.Add(new Move(startPosition, oneForward + _forward));
+            }
         }
 
-        // TODO: check if moved
-        Position twoForward = oneForward + _forward;
-        if (board.IsInside(twoForward) && (board.IsEmpty(twoForward) || board[twoForward].Color != Color))
-        {
-            validEndPositions.Add(twoForward);
-        }
+        return validMoves;
+    }
 
-        return validEndPositions.Select(
-                endPosition => new Move(startPosition, endPosition))
-            .ToList();
+    private bool IsEmpty(Board board, Position position)
+    {
+        return board.IsInside(position) && (board.IsEmpty(position));
+    }
+
+    private bool CanCapture(Board board, Position position)
+    {
+        return board.IsInside(position) && (!board.IsEmpty(position) && board[position].Color != Color);
     }
 
     public override string ToString()
