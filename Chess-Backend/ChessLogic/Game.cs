@@ -11,6 +11,7 @@ public class Game
     {
         Board = board;
         CurrentPlayer = currentPlayer;
+        CurrentPlayer = Player.Black;
     }
 
     public List<Move> FindAllPossibleMovesFor(Position position)
@@ -48,14 +49,27 @@ public class Game
 
     private List<Move> FindAllLegalMovesFor(Player player)
     {
-        List<Move> possibleMoves = Board.GetPositionsWithPiecesOf(player).SelectMany(position =>
+        List<Move> possibleMoves = new List<Move>();
+
+        foreach (var position in Board.GetPositionsWithPiecesOf(player))
         {
             Piece piece = Board[position];
-            return piece.GetMoves(position, Board);
-        }).ToList();
+            possibleMoves.AddRange(piece.GetMoves(position, Board));
+        }
 
-        return possibleMoves.Where(move => move.IsLegal(Board)).ToList();
+        List<Move> legalMoves = new List<Move>();
+
+        foreach (var move in possibleMoves)
+        {
+            if (move.IsLegal(Board))
+            {
+                legalMoves.Add(move);
+            }
+        }
+
+        return legalMoves;
     }
+
 
     public void MakeMove(Move move)
     {

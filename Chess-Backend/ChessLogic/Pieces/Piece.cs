@@ -40,7 +40,7 @@ public abstract class Piece
     public abstract override string ToString();
 
 
-    public Piece DeepCopy()
+    public virtual Piece DeepCopy()
     {
         return (Piece)MemberwiseClone();
     }

@@ -1,11 +1,12 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using ChessLogic.Pieces;
 
 namespace ChessLogic;
 
 public class Board
 {
-    private Piece[,] Pieces { get; set; }
+    private Piece[,] Pieces { get; set; } = new Piece[8, 8];
 
     public Board()
     {
@@ -28,34 +29,36 @@ public class Board
 
     private void PlaceStartingPieces()
     {
-        Pieces = new Piece[8, 8];
-        this[0, 0] = new Rook(Player.Black);
-        this[0, 1] = new Knight(Player.Black);
-        this[0, 2] = new Bishop(Player.Black);
-        this[0, 3] = new Queen(Player.Black);
+        // this[0, 0] = new Rook(Player.Black);
+        // this[0, 1] = new Knight(Player.Black);
+        // this[0, 2] = new Bishop(Player.Black);
+        // this[0, 3] = new Queen(Player.Black);
         this[0, 4] = new King(Player.Black);
-        this[0, 5] = new Bishop(Player.Black);
-        this[0, 6] = new Knight(Player.Black);
-        this[0, 7] = new Rook(Player.Black);
+        // this[0, 5] = new Bishop(Player.Black);
+        // this[0, 6] = new Knight(Player.Black);
+        // this[0, 7] = new Rook(Player.Black);
 
-        for (int i = 0; i < 8; i++)
-        {
-            this[1, i] = new Pawn(Player.Black);
-        }
+        // for (int i = 0; i < 8; i++)
+        // {
+        //     this[1, i] = new Pawn(Player.Black);
+        // }
 
-        this[7, 0] = new Rook(Player.White);
-        this[7, 1] = new Knight(Player.White);
-        this[7, 2] = new Bishop(Player.White);
-        this[7, 3] = new Queen(Player.White);
-        this[7, 4] = new King(Player.White);
-        this[7, 5] = new Bishop(Player.White);
-        this[7, 6] = new Knight(Player.White);
-        this[7, 7] = new Rook(Player.White);
+        this[0, 7] = new Rook(Player.White);
+        this[2, 0] = new Bishop(Player.White);
 
-        for (int i = 0; i < 8; i++)
-        {
-            this[6, i] = new Pawn(Player.White);
-        }
+        // this[7, 0] = new Rook(Player.White);
+        // this[7, 1] = new Knight(Player.White);
+        // this[7, 2] = new Bishop(Player.White);
+        // this[7, 3] = new Queen(Player.White);
+        // this[7, 4] = new King(Player.White);
+        // this[7, 5] = new Bishop(Player.White);
+        // this[7, 6] = new Knight(Player.White);
+        // this[7, 7] = new Rook(Player.White);
+
+        // for (int i = 0; i < 8; i++)
+        // {
+        //     this[6, i] = new Pawn(Player.White);
+        // }
     }
 
     private List<Position> FindAllPositionsWithPieces()
@@ -105,8 +108,7 @@ public class Board
         foreach (var move in validMoves)
         {
             Piece targetPiece = this[move.EndPosition];
-            // TODO Use a better way to check if piece is king
-            if (targetPiece != null && targetPiece.Type == PieceType.King)
+            if (targetPiece != null && targetPiece.Type == PieceType.King && targetPiece.Color != piece.Color)
             {
                 return true;
             }
@@ -144,7 +146,7 @@ public class Board
             for (int j = 0; j < 8; j++)
             {
                 Piece piece = Pieces[i, j];
-                sb.Append(piece != null ? piece.ToString() : " ");
+                sb.Append(piece != null ? piece.ToString() : "X");
                 sb.Append(" ");
             }
 
