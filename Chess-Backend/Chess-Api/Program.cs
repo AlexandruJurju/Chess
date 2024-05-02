@@ -5,7 +5,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Game game = new(new Board(), Player.White);
+Game game = new(new Board().PlaceStartingPieces(), Player.White);
 BoardMapper boardMapper = new BoardMapper();
 
 builder.Services.AddSingleton(boardMapper);

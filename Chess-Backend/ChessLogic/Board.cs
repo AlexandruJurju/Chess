@@ -7,12 +7,7 @@ namespace ChessLogic;
 public class Board
 {
     private Piece[,] Pieces { get; set; } = new Piece[8, 8];
-
-    public Board()
-    {
-        PlaceStartingPieces();
-    }
-
+    
     // setup indexer to access board like a 2d matrix
     public Piece this[int row, int col]
     {
@@ -27,38 +22,37 @@ public class Board
         set => Pieces[position.Row, position.Column] = value;
     }
 
-    private void PlaceStartingPieces()
+    public Board PlaceStartingPieces()
     {
-        // this[0, 0] = new Rook(Player.Black);
-        // this[0, 1] = new Knight(Player.Black);
-        // this[0, 2] = new Bishop(Player.Black);
-        // this[0, 3] = new Queen(Player.Black);
+        this[0, 0] = new Rook(Player.Black);
+        this[0, 1] = new Knight(Player.Black);
+        this[0, 2] = new Bishop(Player.Black);
+        this[0, 3] = new Queen(Player.Black);
         this[0, 4] = new King(Player.Black);
-        // this[0, 5] = new Bishop(Player.Black);
-        // this[0, 6] = new Knight(Player.Black);
-        // this[0, 7] = new Rook(Player.Black);
+        this[0, 5] = new Bishop(Player.Black);
+        this[0, 6] = new Knight(Player.Black);
+        this[0, 7] = new Rook(Player.Black);
 
-        // for (int i = 0; i < 8; i++)
-        // {
-        //     this[1, i] = new Pawn(Player.Black);
-        // }
+        for (int i = 0; i < 8; i++)
+        {
+            this[1, i] = new Pawn(Player.Black);
+        }
 
-        this[0, 7] = new Rook(Player.White);
-        this[2, 0] = new Bishop(Player.White);
+        this[7, 0] = new Rook(Player.White);
+        this[7, 1] = new Knight(Player.White);
+        this[7, 2] = new Bishop(Player.White);
+        this[7, 3] = new Queen(Player.White);
+        this[7, 4] = new King(Player.White);
+        this[7, 5] = new Bishop(Player.White);
+        this[7, 6] = new Knight(Player.White);
+        this[7, 7] = new Rook(Player.White);
 
-        // this[7, 0] = new Rook(Player.White);
-        // this[7, 1] = new Knight(Player.White);
-        // this[7, 2] = new Bishop(Player.White);
-        // this[7, 3] = new Queen(Player.White);
-        // this[7, 4] = new King(Player.White);
-        // this[7, 5] = new Bishop(Player.White);
-        // this[7, 6] = new Knight(Player.White);
-        // this[7, 7] = new Rook(Player.White);
+        for (int i = 0; i < 8; i++)
+        {
+            this[6, i] = new Pawn(Player.White);
+        }
 
-        // for (int i = 0; i < 8; i++)
-        // {
-        //     this[6, i] = new Pawn(Player.White);
-        // }
+        return this;
     }
 
     private List<Position> FindAllPositionsWithPieces()
@@ -88,7 +82,7 @@ public class Board
     public bool IsInCheck(Player player)
     {
         List<Position> positions = GetPositionsWithPiecesOf(PlayerHelper.Opponent(player));
-
+        
         foreach (var position in positions)
         {
             Piece piece = this[position];
@@ -124,7 +118,7 @@ public class Board
         {
             boardCopy[position] = this[position].DeepCopy();
         }
-
+        
         return boardCopy;
     }
 

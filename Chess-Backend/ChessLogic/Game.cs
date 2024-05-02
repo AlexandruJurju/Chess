@@ -1,4 +1,5 @@
-﻿using ChessLogic.Pieces;
+﻿using System.Diagnostics;
+using ChessLogic.Pieces;
 
 namespace ChessLogic;
 
@@ -11,10 +12,9 @@ public class Game
     {
         Board = board;
         CurrentPlayer = currentPlayer;
-        CurrentPlayer = Player.Black;
     }
 
-    public List<Move> FindAllPossibleMovesFor(Position position)
+    private List<Move> FindAllPossibleMovesFor(Position position)
     {
         if (Board.IsEmpty(position) || Board[position].Color != CurrentPlayer)
         {
@@ -53,10 +53,9 @@ public class Game
 
         foreach (var position in Board.GetPositionsWithPiecesOf(player))
         {
-            Piece piece = Board[position];
-            possibleMoves.AddRange(piece.GetMoves(position, Board));
+            possibleMoves.AddRange(FindAllPossibleMovesFor(position));
         }
-
+        
         List<Move> legalMoves = new List<Move>();
 
         foreach (var move in possibleMoves)
