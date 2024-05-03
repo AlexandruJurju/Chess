@@ -25,5 +25,13 @@
 }
 
 .square.valid {
-  background-color: green;
+  background-color: blue;
+}
+
+.even {
+  background-color: rgba(125, 148, 93, 255);
+}
+
+.odd {
+  background-color: rgba(238, 238, 213, 255);
 }
