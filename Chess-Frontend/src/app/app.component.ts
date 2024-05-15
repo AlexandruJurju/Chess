@@ -69,6 +69,10 @@ export class AppComponent implements OnInit {
         this.gameDto = game; // Update the game
         this.validMoves = []; // Clear the valid moves
         this.selectedPiece = null; // Deselect the piece
+        let audio = document.getElementById('moveSound') as HTMLAudioElement;
+        if (audio) {
+          audio.play();
+        }
       });
     }
   }
@@ -87,11 +91,11 @@ export class AppComponent implements OnInit {
     return this.validMoves.some(move => move.endPosition.row === position.row && move.endPosition.column === position.column);
   }
 
-  checkForCheck():boolean {
+  checkForCheck(): boolean {
     return this.gameDto.isInCheck!;
   }
 
-  checkForCheckMate():boolean{
+  checkForCheckMate(): boolean {
     return this.gameDto.isCheckMate!;
   }
 }
